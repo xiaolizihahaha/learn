@@ -96,10 +96,34 @@
    
    ```
 
+3. 查询数据
+
+   ```
+   select id,username from 表名 where id=xx;
+   ```
+
 3. 增加数据
 
    ```
    insert into user_test(username,password) values("Mary","19107120261");
+   ```
+
+4. 删除数据
+
+   ```
+   delete from 表名 where id=xx;
+   ```
+
+6. 修改数据
+
+   ```
+   update 表名 set username=xx,password=xx where id=xx
+   ```
+
+7. 查询总数
+
+   ```
+   select count(*) from 表名;
    ```
 
 4. 删除表

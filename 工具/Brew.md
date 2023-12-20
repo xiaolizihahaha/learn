@@ -18,6 +18,12 @@ brew list
 
 
 
+#查看下载文件的位置
+
+brew list 包名
+
+
+
 #homebrew 安装位置
 
 /opt/homebrew
