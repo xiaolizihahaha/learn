@@ -8,7 +8,7 @@
 
   ![img](https://images2015.cnblogs.com/blog/764050/201606/764050-20160619112701960-1012598812.png)
 
-  ![image-20231103142237914](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231103142237914.png)
+  ![image-20231103142237914](/Users/lifangyuan/Desktop/learn/pic/image-20231103142237914.png)
 
 - **神经网络**
 
@@ -91,13 +91,13 @@
 
   full connected Layer（全连接层）和softmax怎么运作：
 
-  ![image-20231103162452867](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231103162452867.png)
+  ![image-20231103162452867](/Users/lifangyuan/Desktop/learn/pic/image-20231103162452867.png)
 
   
 
   
 
-  ![image-20231103162631727](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231103162631727.png)
+  ![image-20231103162631727](/Users/lifangyuan/Desktop/learn/pic/image-20231103162631727.png)
 
   该图片属于每一类的概率之和为1，选择最大的即可（softmax归一化数值为概率，且各类概率之和为1）
 

@@ -8,7 +8,7 @@
 
 - **SVM**：支持向量器，是一种二类分类模型，他的基本模型是定义在特征空间上的**间隔最大**的线性分类器，SVM的学习策略就是间隔最大化。对于支持向量机来说，数据点若是n维向量，我们用n−1维的超平面来分开这些点。但是可能有许多超平面可以把数据分类。最佳超平面的一个合理选择就是以最大间隔把两个类分开的超平面。因此，SVM选择最佳超平面。
 
-  ![image-20231101172949996](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231101172949996.png)
+  ![image-20231101172949996](/Users/lifangyuan/Desktop/learn/pic/image-20231101172949996.png)
 
 - **随机森林**：当我们进行分类任务时，新的输入样本进入，就让森林中的每一棵决策树分别进行判断和分类，每个决策树会得到一个自己的分类结果，决策树的分类结果中哪一个分类最多，那么随机森林就会把这个结果当做最终的结果。
 
@@ -18,7 +18,7 @@
 
   
 
-  ![image-20231101220526193](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231101220526193.png)
+  ![image-20231101220526193](/Users/lifangyuan/Desktop/learn/pic/image-20231101220526193.png)
 
 - 图像分类 & 目标检测 & 图像分割 & 语义分割
 
@@ -30,7 +30,7 @@
 
   实例分割：输入一张图像，计算机用抠图级别的 扣出各个物体，并识别该类别里的各个实例。
 
-  ![image-20231103172959418](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231103172959418.png)
+  ![image-20231103172959418](/Users/lifangyuan/Desktop/learn/pic/image-20231103172959418.png)
 
 
 
@@ -83,7 +83,7 @@
 
     （输入448 * 448 * 3的图像，输出是7 * 7 * 30的张量）
 
-    ![image-20231105133507180](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231105133507180.png)
+    ![image-20231105133507180](/Users/lifangyuan/Desktop/learn/pic/image-20231105133507180.png)
 
     
 
@@ -113,13 +113,13 @@
 
     
 
-    ![image-20231105135559438](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231105135559438.png)
+    ![image-20231105135559438](/Users/lifangyuan/Desktop/learn/pic/image-20231105135559438.png)
 
     
 
     用不同颜色来代表不同的类别，用线条的粗细来代表每个bounding box的置信度，那么形成中间这个结果（98个bounding box，每个bounding box都有置信度，最高类别概率对应的类别），再将中间这张图进行一个后处理（比如说去掉较小置信度的，进行非极大值抑制（NMS）去掉重复的预测框）就获得了最终的目标检测预测结果。
 
-    ![image-20231105141911667](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231105141911667.png)
+    ![image-20231105141911667](/Users/lifangyuan/Desktop/learn/pic/image-20231105141911667.png)
 
     
 
@@ -131,13 +131,13 @@
 
     先拿出一个grid cell来看，一个grid cell包括30个数字（5 + 5 + 20），是两个bounding box + 20个类别的条件概率，那么计算一个bounding box各个类别的全概率就是该bounding box的置信度乘以各个类别的条件概率，那么我们可以得到98个20维的全概率。
 
-    ![image-20231105145540473](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231105145540473.png)
+    ![image-20231105145540473](/Users/lifangyuan/Desktop/learn/pic/image-20231105145540473.png)
 
     
 
      可视化出来，我们获得到了中间的这个乱图
 
-    ![image-20231105152047150](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231105152047150.png)
+    ![image-20231105152047150](/Users/lifangyuan/Desktop/learn/pic/image-20231105152047150.png)
 
     98 * 20（98个bounding box 20个类别 的全概率），我们先按行来看，一行代表一个类别，那这个类别中肯定有一些是概率很低的，我们设置一个阈值，把所有小于该阈值的概率一律抹零。再按照概率高低从大到小排序。再对这个排序后的结果进行非极大值抑制（先把最高的拿出来，再遍历小于这个值的每个值，如果他俩的交并比IOU如果他俩的IOU大于某个阈值，那我们就认为他俩重复识别了一个物体，那我们就把低概率的这个过滤掉，（抹零）否则保留；再遍历剩下的值），
 
@@ -153,7 +153,7 @@
 
     在训练的时候，已经在训练集的每张图片上标注过了ground truth（人工标记bounding box，绿框，标准答案），而算法是为了让预测结果尽量拟合这个绿框，使得损失函数最小化。而绿框落在哪个grid cell里面，就应该由哪个grid cell 产生的bounding box来负责拟合这个绿框（一个grid cell产生2个bounding box 由两者之一拟合绿框，选择和ground truth 交并比大的那个框来拟合，尽可能和ground truth 一样重合，另外一个框什么都不用做），并且grid cell输出的类别也应该是ground truth的类别；其他没有ground truth 落在的grid cell呢？那他预测出的两个框都不用管了，让他们的置信度越小越好，最好为0；这样构建了yolov1的损失函数
 
-    ![image-20231105155121158](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20231105155121158.png)
+    ![image-20231105155121158](/Users/lifangyuan/Desktop/learn/pic/image-20231105155121158.png)
 
   - 2
 

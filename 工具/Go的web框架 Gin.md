@@ -147,7 +147,7 @@ http://localhost:3000/time
 
 1. 从postman的body中的formdata接收文件
 
-   ![image-20230922160738249](/Users/lifangyuan/Library/Application Support/typora-user-images/image-20230922160738249.png)
+   ![image-20230922160738249](/Users/lifangyuan/Desktop/learn/pic/image-20230922160738249.png)
 
 2. 后端写：
 
